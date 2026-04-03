@@ -3,14 +3,13 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: pandoc/latex:latest
     steps:
       - uses: actions/checkout@v4
       
-      - name: Install dependencies
-        run: sudo apt-get install -y pandoc wkhtmltopdf
-      
       - name: Convert to PDF
-        run: pandoc "テキストサンプル.md" -o output.pdf --pdf-engine=wkhtmltopdf
+        run: pandoc "テキストサンプル.md" -o output.pdf
       
       - uses: actions/upload-artifact@v4
         with:
