@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Convert to PDF
-        run: pandoc "テキストサンプル.md" -o output.pdf
+        run: pandoc "lesson.md" -o output.pdf
       
       - uses: actions/upload-artifact@v4
         with:
