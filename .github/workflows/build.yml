@@ -1,19 +1,18 @@
 name: Build PDF
-on: [push] # ファイルがアップされたら自動実行
-
+on: [push]
 jobs:
   build:
-    runs-on: ubuntu-latest # Linuxサーバーを使う
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 # ファイルを取得
+      - uses: actions/checkout@v4
       
-      - name: Convert to PDF # PDFに変換する
-        uses: baileyjm02/markdown-to-pdf@v1
-        with:
-          input_path: test.md # 変換するファイル
-          output_dir: output/ # 出力先フォルダ
-          
-      - uses: actions/upload-artifact@v4 # ダウンロードできる場所に保存
+      - name: Install Pandoc
+        run: sudo apt-get install -y pandoc
+      
+      - name: Convert to PDF
+        run: pandoc "テキストサンプル.md" -o output.pdf
+      
+      - uses: actions/upload-artifact@v4
         with:
           name: pdf
-          path: output/
+          path: output.pdf
