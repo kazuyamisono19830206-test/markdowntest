@@ -13,7 +13,7 @@ jobs:
           input_path: test.md # 変換するファイル
           output_dir: output/ # 出力先フォルダ
           
-      - uses: actions/upload-artifact@v3 # ダウンロードできる場所に保存
+      - uses: actions/upload-artifact@v4 # ダウンロードできる場所に保存
         with:
           name: pdf
           path: output/
