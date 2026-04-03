@@ -1,0 +1,19 @@
+name: Build PDF
+on: [push] # ファイルがアップされたら自動実行
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Linuxサーバーを使う
+    steps:
+      - uses: actions/checkout@v3 # ファイルを取得
+      
+      - name: Convert to PDF # PDFに変換する
+        uses: baileyjm02/markdown-to-pdf@v1
+        with:
+          input_path: test.md # 変換するファイル
+          output_dir: output/ # 出力先フォルダ
+          
+      - uses: actions/upload-artifact@v3 # ダウンロードできる場所に保存
+        with:
+          name: pdf
+          path: output/
