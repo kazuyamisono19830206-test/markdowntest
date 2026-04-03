@@ -6,11 +6,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Install Pandoc
-        run: sudo apt-get install -y pandoc
+      - name: Install dependencies
+        run: sudo apt-get install -y pandoc wkhtmltopdf
       
       - name: Convert to PDF
-        run: pandoc "テキストサンプル.md" -o output.pdf
+        run: pandoc "テキストサンプル.md" -o output.pdf --pdf-engine=wkhtmltopdf
       
       - uses: actions/upload-artifact@v4
         with:
